@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jupiter - BigPlanetarium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Responsive iframe for embedded video */
+    .jupiter-video iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px #00ffe1;
+      display: block;
+      margin: 30px auto;
+    }
+
+    /* Style button inside jupiter-container */
+    .jupiter-container button {
+      display: block;
+      margin: 30px auto 10px auto;
+      padding: 15px 40px;
+      background: linear-gradient(90deg, #00ffe1, #3a6eff);
+      border: none;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #000;
+      cursor: pointer;
+      box-shadow: 0 0 30px #00ffe1;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      user-select: none;
+    }
+
+    .jupiter-container button:hover,
+    .jupiter-container button:focus {
+      transform: scale(1.1);
+      box-shadow: 0 0 60px #00ffe1;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Jupiter</h1>
+    <p>The largest planet in our Solar System</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a> |
+    <a href="mars.html">Mars</a> |
+    <a href="jupiter.html">Jupiter</a> |
+    <a href="about.html">About</a>
+  </nav>
+
+  <main>
+    <section class="jupiter-container" aria-label="Information about Jupiter and space video" aria-describedby="jupiter-video-transcript" tabindex="0" style="outline: none;">
+      <h1>About Jupiter</h1>
+      <div class="jupiter-content">
+        <div class="jupiter-text">
+          <p>Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant made mostly of hydrogen and helium.</p>
+          <p>Known for its Great Red Spot, a giant storm bigger than Earth, Jupiter has dozens of moons and a faint ring system.</p>
+        </div>
+        <div class="jupiter-image">
+          <img src="images/jupiter.jpg" alt="Image of planet Jupiter" />
+        </div>
+      </div>
+
+      <!-- Embedded YouTube video -->
+      <div class="jupiter-video" tabindex="0" style="outline: none;">
+        <iframe 
+          src="https://www.youtube.com/embed/Rf5E2FSFOjU" 
+          title="Short videos about space" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+          tabindex="0"
+          width="100%" 
+          height="315">
+        </iframe>
+      </div>
+
+      <p id="jupiter-video-transcript" class="transcript" style="color: #a0a0a0; font-size: 0.9rem; margin-top: 10px;">
+        This short video provides fascinating insights into space exploration and facts about the solar system.
+      </p>
+
+      <!-- Show Facts button inside container -->
+      <button type="button" id="jupiter-facts-btn" aria-label="Show more Jupiter facts">
+        Show Jupiter Facts
+      </button>
+
+      <div id="jupiter-facts" style="margin-top: 20px; color: rgb(142, 172, 172); font-size: 1.1rem;"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 BigPlanetarium</p>
+  </footer>
+
+  <script>
+    const factsBtn = document.getElementById('jupiter-facts-btn');
+    const factsDiv = document.getElementById('jupiter-facts');
+
+    const jupiterFacts = [
+      "Jupiter has 79 known moons, including the largest moon in the solar system, Ganymede.",
+      "The Great Red Spot is a giant storm that has been raging for at least 350 years.",
+      "Jupiter's magnetic field is 14 times stronger than Earth's.",
+      "It takes Jupiter about 12 Earth years to orbit the Sun once."
+    ];
+
+    let factIndex = 0;
+
+    factsBtn.addEventListener('click', () => {
+      factsDiv.textContent = jupiterFacts[factIndex];
+      factIndex = (factIndex + 1) % jupiterFacts.length;
+    });
+  </script>
+
+</body>
+</html>
+
+

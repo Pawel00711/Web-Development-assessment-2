@@ -1,0 +1,448 @@
+/*    BigPlanetarium – Space Theme with Animated Starfield     */
+
+/* Import Poppins and Montserrat fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Montserrat:wght@400;600&display=swap');
+
+/*    Starfield Animation    */
+
+@keyframes starMove {
+  from {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  to {
+    background-position: -10000px 5000px, 5000px 10000px, 10000px 20000px;
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+body {
+  background-color: #000;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 50px 70px, #eee, transparent),
+    radial-gradient(2px 2px at 80px 110px, #ccc, transparent);
+  background-repeat: repeat;
+  animation: starMove 150s linear infinite;
+
+  color: #c5c6c7;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease;
+}
+
+/* Twinkle effect on stars using a transparent overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 2px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 2px);
+  background-repeat: repeat;
+  background-size: 50px 50px, 30px 30px;
+  animation: twinkle 3s infinite ease-in-out alternate;
+  z-index: 0;
+}
+
+
+body:hover {
+  animation-play-state: paused;
+  background-color: #050824;
+}
+
+body:hover::before {
+  animation-duration: 1.5s;
+  opacity: 1;
+}
+
+/*   Header */
+
+header {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 50px 20px 40px;
+  background: linear-gradient(90deg, #3a6eff, #00ffe1);
+  color: #0b0c10;
+  text-shadow: 0 0 20px #00ffe1;
+  font-size: 2.8rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  box-shadow: 0 2px 20px rgba(0,255,255,0.6);
+  margin-bottom: 40px;
+  user-select: none;
+}
+
+/*  Navigation   */
+
+nav {
+  position: relative;
+  z-index: 10;
+  background: #111822;
+  text-align: center;
+  padding: 15px 0;
+}
+
+nav a {
+  color: #66fcf1;
+  text-decoration: none;
+  margin: 0 20px;
+  font-size: 1.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  transition: text-shadow 0.3s ease;
+}
+
+nav a:hover,
+nav a:focus {
+  text-shadow: 0 0 15px #00ffe1;
+  outline: none;
+}
+
+/*  Main Content   */
+
+main {
+  position: relative;
+  z-index: 10;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 40px 20px;
+  background: rgba(10, 15, 25, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 0 40px #00ffe1 inset;
+
+  font-family: 'Montserrat', sans-serif;
+  color: #c5c6c7;
+}
+
+main section {
+  max-width: 700px;
+  margin: 0 auto 70px;
+  padding: 20px;
+  background: rgba(10, 15, 25, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 0 30px #00ffe1;
+  color: #c5c6c7;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  transition: box-shadow 0.3s ease;
+}
+
+main section:hover,
+main section:focus-within {
+  box-shadow: 0 0 50px #00ffe1;
+}
+
+/* Headings inside sections */
+main section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #66fcf1;
+  text-shadow: 0 0 10px #00ffe1;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+/* Paragraphs */
+main section p {
+  margin-bottom: 30px;
+  font-weight: 400;
+}
+
+/* Lists inside sections */
+main section ul {
+  list-style-type: disc;
+  padding-left: 40px;
+  text-align: left;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: #a0f0ff;
+}
+
+main section ul li {
+  margin-bottom: 12px;
+}
+
+/* Images */
+main img {
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,255,255,0.7);
+  transition: transform 0.3s ease;
+}
+
+main img:hover,
+main img:focus {
+  transform: scale(1.05);
+  outline: none;
+}
+
+/*    Planet Grid    */
+
+.planet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 35px;
+  margin-top: 50px;
+}
+
+.planet-grid figure {
+  background: rgba(10, 15, 25, 0.7);
+  border-radius: 25px;
+  padding: 25px;
+  box-shadow: 0 0 30px rgba(0,255,225,0.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.planet-grid figure:hover,
+.planet-grid figure:focus-within {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 0 50px rgba(0,255,225,1);
+  outline: none;
+}
+
+.planet-grid img {
+  width: 150px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.planet-grid figcaption {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #66fcf1;
+  text-shadow: 0 0 10px #00ffe1;
+  font-family: 'Poppins', sans-serif;
+}
+
+/*  Buttons    */
+
+button {
+  background: linear-gradient(45deg, #00ffe1, #3a6eff);
+  border: none;
+  padding: 15px 35px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 0 25px #00ffe1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+button:hover,
+button:focus {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px #00ffe1;
+  outline: none;
+}
+
+/* === Keyboard focus style for accessibility === */
+button:focus-visible {
+  outline: 3px solid #00f;
+  outline-offset: 2px;
+}
+
+/*   Footer   */
+
+footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 20px;
+  background: #111822;
+  color: #00ffe1;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  user-select: none;
+}
+
+/*    Mobile Responsive    */
+
+@media (max-width: 600px) {
+  nav a {
+    display: block;
+    margin: 12px 0;
+  }
+
+  .planet-grid img {
+    width: 120px;
+  }
+}
+
+/*   Scroll reveal animation styles     */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/*   Jupiter Container Styles   */
+
+.jupiter-container {
+  max-width: 800px;
+  margin: 50px auto;
+  background: rgba(10, 20, 30, 0.95);
+  border-radius: 25px;
+  padding: 30px 40px;
+  box-shadow: 0 0 20px #0ff, 0 0 40px #0ff inset;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #cde;
+  position: relative;
+  z-index: 10;
+}
+
+/* Flex layout for text + image */
+.jupiter-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.jupiter-text {
+  flex: 1 1 300px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: #cde;
+}
+
+.jupiter-text p {
+  margin-bottom: 20px;
+}
+
+.jupiter-image {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.jupiter-image img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px #0ff;
+}
+
+/* Heading */
+.jupiter-container h1 {
+  font-size: 2.8rem;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+/* Button styling */
+.jupiter-container button {
+  display: block;
+  margin: 0 auto;
+  background: linear-gradient(90deg, #00ffe1, #3a6eff);
+  border: none;
+  padding: 18px 50px;
+  border-radius: 40px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 0 30px #00ffe1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  user-select: none;
+}
+
+.jupiter-container button:hover,
+.jupiter-container button:focus {
+  transform: scale(1.1);
+  box-shadow: 0 0 60px #00ffe1;
+  outline: none;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 700px) {
+  .jupiter-content {
+    flex-direction: column;
+  }
+  .jupiter-image img {
+    max-width: 90%;
+  }
+}
+/*    HEADER SIZE    */
+
+header {
+  padding: 20px 15px 18px;   
+}
+
+header h1 {
+  font-size: 1.9rem;        
+  margin: 0;
+}
+
+header p {
+  font-size: 0.95rem;      
+  margin-top: 6px;
+}
+/*   EXTRA LARGE HEADERS    */
+
+/* Main site title */
+header h1 {
+  font-size: 3.8rem;   
+  line-height: 1.1;
+}
+
+/* Header subtitle */
+header p {
+  font-size: 1.5rem;
+}
+
+/* Page main titles */
+main h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+/* Section headings */
+main h2 {
+  font-size: 2.2rem;
+}
+
+/* Smaller headings */
+main h3 {
+  font-size: 1.8rem;
+}
+
+
+
+
+
+
+
+
